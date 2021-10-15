@@ -1,0 +1,17 @@
+on_yearly_pulse = {
+	events = {
+		smarties.10
+	}
+}
+
+on_monthly_pulse = {
+	events = {
+		smarties.11
+	}
+}
+
+on_game_start = {
+	events = {
+		smarties.12
+	}
+}

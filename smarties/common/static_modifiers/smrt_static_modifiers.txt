@@ -1,0 +1,52 @@
+# All global modifiers are here. They are applied from certain game-features.
+#
+# Effects are fully scriptable here.
+
+# The names can NOT be removed or changed since the code references them
+
+##########################################################################
+# Pop Modifiers
+##########################################################################
+
+
+#Education levels
+
+pop_no_education = {
+	planet_jobs_specialist_produces_mult = -0.5
+	pop_ethic_authoritarian_attraction_mult = 0.5
+	custom_tooltip = "no_education" 
+	show_only_custom_tooltip = no
+
+}
+
+pop_low_education = {
+	planet_jobs_specialist_produces_mult = -0.25
+	pop_ethic_authoritarian_attraction_mult = 0.1
+	custom_tooltip = "low_education"
+	show_only_custom_tooltip = no
+
+}
+
+pop_moderate_education = {
+	pop_demotion_time_mult = 0.25
+	custom_tooltip = "moderate_education"
+	show_only_custom_tooltip = no
+
+}
+	
+pop_high_education = {
+	planet_jobs_specialist_produces_mult = 0.1
+	pop_demotion_time_mult = 0.5
+	planet_jobs_worker_produces_mult = -0.1
+	custom_tooltip = "high_education"
+	show_only_custom_tooltip = no
+}
+
+pop_max_education = {
+	planet_jobs_specialist_produces_mult = 0.25
+	pop_demotion_time_mult = 1
+	planet_jobs_worker_produces_mult = -0.25
+	custom_tooltip = "max_education"
+	show_only_custom_tooltip = no
+
+}

@@ -1,0 +1,385 @@
+namespace = smarties
+
+planet_event = {
+	id = smarties.1
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			add_modifier = {
+				modifier = pop_no_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.2
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			add_modifier = {
+				modifier = pop_low_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.3
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			add_modifier = {
+				modifier = pop_moderate_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.4
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			add_modifier = {
+				modifier = pop_high_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.5
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_pop = {
+			add_modifier = {
+				modifier = pop_max_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.6
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_pop = {
+			add_modifier = {
+				modifier = pop_no_education
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = smarties.7
+	title = smartie.1.name
+	desc = smartie.1.desc
+	is_triggered_only = yes
+
+	immediate = {
+		check_planet_employment = yes
+	}
+}
+
+event = {
+		id = smarties.10
+		hide_window = yes
+		is_triggered_only = yes
+
+		immediate = {
+			every_playable_country = {
+				limit = {
+					is_gestalt = no
+				}
+				every_owned_planet = {
+					
+					set_variable = {
+						which = planet_education_value
+						value = 0
+				}
+
+				every_owned_pop = {
+					limit = {
+						has_job = educator
+					}
+
+					prev = {
+						change_variable = {
+							which = planet_education_value
+							value = 1
+						}
+					}
+				}
+
+
+				while = {
+					count = planet_education_value
+
+					random_owned_pop = {
+						limit = { 
+							NOR = {
+								has_trait = trait_machine_unit
+								has_trait = trait_mechanical
+								has_trait = trait_hive_mind
+								is_enslaved = yes
+								}
+							}
+							if = {
+								limit = { has_modifier = pop_no_education }
+								add_modifier = {
+									modifier = pop_low_education
+								}
+								remove_modifier = pop_no_education
+			
+							}
+							else_if = {
+								limit = { has_modifier = pop_low_education }
+								add_modifier = {
+									modifier = pop_moderate_education
+								}
+								remove_modifier = pop_low_education
+							}
+							else_if = {
+								limit = { has_modifier = pop_moderate_education }
+								add_modifier = {
+									modifier = pop_high_education
+								}
+								remove_modifier = pop_moderate_education
+							}
+							else_if = {
+								limit = { has_modifier = pop_high_education }
+								add_modifier = {
+									modifier = pop_max_education
+								}
+								remove_modifier = pop_high_education
+							}
+	
+						}
+				}
+				check_planet_employment = yes
+			}
+		}
+	}
+}
+
+event = {
+	id = smarties.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				is_gestalt = no
+			}
+			every_owned_planet = {
+				every_owned_pop = {
+					limit = {
+						NOR = {
+							has_trait = trait_machine_unit
+							has_trait = trait_mechanical
+							has_trait = trait_hive_mind
+							has_modifier = pop_no_education
+							has_modifier = pop_low_education
+							has_modifier = pop_moderate_education
+							has_modifier = pop_high_education
+							has_modifier = pop_max_education
+							is_enslaved = yes
+							has_citizenship_type = {
+								type = citizenship_organic_trophy
+							}
+						}
+					}
+					random_list = {
+						6 = {
+							add_modifier = { modifier = pop_low_education }
+						}
+						2 = {
+							add_modifier = { modifier = pop_no_education }
+						}
+						2 = {
+							add_modifier = { modifier = pop_moderate_education }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+event = {
+	id = smarties.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				is_gestalt = no
+			}
+			every_owned_planet = {			
+				every_owned_pop = {
+					limit = {
+						OR = {
+							has_job = administrator
+							has_job = merchant
+							has_job = head_researcher
+							has_job = high_priest
+							has_job = noble
+							has_job = executive
+						}
+					}
+
+					add_modifier = {
+						modifier = pop_high_education
+					}
+				}
+				every_owned_pop = {
+					limit = {
+						OR = {
+							has_job = researcher
+							has_job = priest
+							has_job = death_chronicler
+							has_job = death_priest
+							has_job = culture_worker
+							has_job = bureaucrat
+						}
+					}
+
+					add_modifier = {
+						modifier = pop_moderate_education
+					}
+				}
+				
+				while = {
+					count = 5
+
+					random_owned_pop = {
+						limit = {
+							NOR = {
+								is_pop_category = specialist
+								is_pop_category = ruler
+								has_modifier = pop_max_education
+								has_modifier = pop_high_education
+								has_modifier = pop_moderate_education
+								has_modifier = pop_no_education
+								is_enslaved = yes
+								has_trait = trait_machine_unit
+								has_trait = trait_mechanical
+								has_trait = trait_hive_mind
+							}
+						}
+
+						add_modifier = {
+							modifier = pop_no_education
+						}
+					}
+				}
+
+				#every_owned_pop = {
+				#	limit = {
+				#		OR = {
+				#			is_enslaved = yes
+				#			has_citizenship_type = {
+				#				type = citizenship_organic_trophy
+				#			}
+				#			NOT = {
+				#				has_slavery_type = {
+				#					type = slavery_indentured
+				#				}
+				#			}
+				#		}
+				#	}
+				#	add_modifier = {
+				#		modifier = pop_no_education
+				#	}
+				# }
+
+				#every_owned_pop = {
+				#	limit = {
+				#		has_slavery_type = {
+				#			type = slavery_indentured
+				#		}
+				#	}
+				#	random_list = {
+				#		6 = {
+				#			add_modifier = { modifier = pop_low_education }
+				#		}
+				#		4 = {
+				#			add_modifier = { modifier = pop_no_education }
+				#		}
+				#	}
+				# }
+
+				every_owned_pop = {
+					limit = {
+						NOR = {
+							has_modifier = pop_max_education
+							has_modifier = pop_high_education
+							has_modifier = pop_moderate_education
+							has_modifier = pop_no_education
+							is_enslaved = yes
+							has_trait = trait_machine_unit
+							has_trait = trait_mechanical
+							has_trait = trait_hive_mind
+						}
+					}
+
+					add_modifier = {
+						modifier = pop_low_education
+					}
+				}
+			}
+		}
+	}
+}
+
+event = {
+	id = smarties.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				is_ai = yes
+				is_gestalt = no
+			}
+			every_owned_planet = {
+				limit = {
+					NOT = {
+						has_building = building_education_center
+					}
+					free_building_slots > 0
+				}
+				add_building = building_education_center
+				prev = {
+					add_resource = {
+						minerals = @b1_minerals
+					}
+				}
+				
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+educator = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = smrt_education_center_1
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+	}
+
+	possible = {
+		specialist_job_check_trigger = yes
+		owner = {
+			is_gestalt = no
+		}
+	}
+
+	resources = {
+		category = planet_artisans
+		produces = {
+			physics_research = 2
+			society_research = 2
+			engineering_research = 2
+		}
+		upkeep = {
+			consumer_goods = 3
+			energy = 3
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+	}
+}
